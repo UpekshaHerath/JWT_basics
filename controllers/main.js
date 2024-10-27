@@ -1,16 +1,15 @@
-const customError = require("../errors/custom-error");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
+const { BadRequest } = require("../errors/bad-request");
 
 const login = async (req, res) => {
   const { username, password } = req.body;
-  console.log(username, password);
   // mongoose validations
   // Joy
 
   // check in the controller
   if (!username || !password) {
-    throw new customError("Please provide email and password", 400);
+    throw new BadRequest("Please provide email and password");
   }
 
   // just for demo, normally provided by DB
